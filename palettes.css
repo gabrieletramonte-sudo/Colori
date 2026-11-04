@@ -1,0 +1,92 @@
+:root {
+  /* Arancio Terra */
+  --arancio-terra-1: #FC5C02;
+  --arancio-terra-accento: #FC5C02;
+  --arancio-terra-2: #E2CEAE;
+  --arancio-terra-chiaro: #E2CEAE;
+  --arancio-terra-3: #7C6B51;
+  --arancio-terra-neutro: #7C6B51;
+  --arancio-terra-4: #312B1E;
+  --arancio-terra-scuro: #312B1E;
+  --arancio-terra-sfondo: #FC5C02;
+  --arancio-terra-font-titoli: 'Archivo Black', sans-serif;
+  --arancio-terra-font-testo: 'Inter', sans-serif;
+
+  /* Acqua Indaco */
+  --acqua-indaco-1: #00FFD4;
+  --acqua-indaco-accento: #00FFD4;
+  --acqua-indaco-2: #5465FF;
+  --acqua-indaco-primario: #5465FF;
+  --acqua-indaco-3: #D2DDFF;
+  --acqua-indaco-chiaro: #D2DDFF;
+  --acqua-indaco-4: #050208;
+  --acqua-indaco-scuro: #050208;
+  --acqua-indaco-sfondo: #5465FF;
+  --acqua-indaco-font-titoli: 'Space Grotesk', sans-serif;
+  --acqua-indaco-font-testo: 'Inter', sans-serif;
+
+  /* Giallo Lavanda */
+  --giallo-lavanda-1: #474150;
+  --giallo-lavanda-scuro: #474150;
+  --giallo-lavanda-2: #F5FFF4;
+  --giallo-lavanda-chiaro: #F5FFF4;
+  --giallo-lavanda-3: #9C99B8;
+  --giallo-lavanda-neutro: #9C99B8;
+  --giallo-lavanda-4: #FFBB00;
+  --giallo-lavanda-accento: #FFBB00;
+  --giallo-lavanda-sfondo: #FFBB00;
+  --giallo-lavanda-font-titoli: 'Poppins', sans-serif;
+  --giallo-lavanda-font-testo: 'DM Sans', sans-serif;
+
+  /* Viola Lime */
+  --viola-lime-1: #A935EB;
+  --viola-lime-primario: #A935EB;
+  --viola-lime-2: #87DB20;
+  --viola-lime-accento: #87DB20;
+  --viola-lime-3: #FFFFFF;
+  --viola-lime-chiaro: #FFFFFF;
+  --viola-lime-4: #000000;
+  --viola-lime-scuro: #000000;
+  --viola-lime-sfondo: #87DB20;
+  --viola-lime-font-titoli: 'Syne', sans-serif;
+  --viola-lime-font-testo: 'Manrope', sans-serif;
+
+  /* Viola Notte */
+  --viola-notte-1: #6F2DBD;
+  --viola-notte-primario: #6F2DBD;
+  --viola-notte-2: #A663CC;
+  --viola-notte-secondario: #A663CC;
+  --viola-notte-3: #171123;
+  --viola-notte-scuro: #171123;
+  --viola-notte-4: #FBFBFB;
+  --viola-notte-chiaro: #FBFBFB;
+  --viola-notte-sfondo: #6F2DBD;
+  --viola-notte-font-titoli: 'Unbounded', sans-serif;
+  --viola-notte-font-testo: 'Outfit', sans-serif;
+
+  /* Oliva */
+  --oliva-1: #121A1B;
+  --oliva-scuro: #121A1B;
+  --oliva-2: #505039;
+  --oliva-neutro: #505039;
+  --oliva-3: #A7AA63;
+  --oliva-primario: #A7AA63;
+  --oliva-4: #EAE6D2;
+  --oliva-chiaro: #EAE6D2;
+  --oliva-sfondo: #A7AA63;
+  --oliva-font-titoli: 'Playfair Display', sans-serif;
+  --oliva-font-testo: 'Lora', sans-serif;
+
+  /* Cielo */
+  --cielo-1: #90C2E7;
+  --cielo-primario: #90C2E7;
+  --cielo-2: #FEF7F8;
+  --cielo-chiaro: #FEF7F8;
+  --cielo-3: #CDD4DD;
+  --cielo-neutro: #CDD4DD;
+  --cielo-4: #22819A;
+  --cielo-scuro: #22819A;
+  --cielo-sfondo: #22819A;
+  --cielo-font-titoli: 'Nunito', sans-serif;
+  --cielo-font-testo: 'Nunito Sans', sans-serif;
+}

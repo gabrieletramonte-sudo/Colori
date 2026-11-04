@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Palette e Font</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black:wght@400;700&family=DM+Sans:wght@400;700&family=Inter:wght@400;700&family=Lora:wght@400;700&family=Manrope:wght@400;700&family=Nunito:wght@400;700&family=Nunito+Sans:wght@400;700&family=Outfit:wght@400;700&family=Playfair+Display:wght@400;700&family=Poppins:wght@400;700&family=Space+Grotesk:wght@400;700&family=Syne:wght@400;700&family=Unbounded:wght@400;700&display=swap">
+<style>
+:root{--bg:#f4f4f2;--fg:#151515;--muted:#666;--card:#fff}
+@media (prefers-color-scheme:dark){:root{--bg:#111;--fg:#eee;--muted:#999;--card:#1c1c1c}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,sans-serif;padding:24px 16px}
+h1{margin:0 0 4px} p.sub{color:var(--muted);margin:0 0 24px}
+.grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));max-width:1200px;margin:0 auto}
+header{max-width:1200px;margin:0 auto}
+.card{border-radius:20px;overflow:hidden;background:var(--card);box-shadow:0 2px 12px #0002}
+.hero{padding:28px 20px 20px;display:flex;justify-content:center}
+.pill{width:56px;height:150px;border-radius:28px;margin-left:-14px;box-shadow:-6px 4px 14px #0004}
+.pill:first-child{margin-left:0}
+.body{padding:16px 20px 20px}
+.sw{display:flex;gap:8px;margin:8px 0 14px}
+.sw button{flex:1;border:0;padding:40px 0 0;font:600 11px ui-monospace,monospace;cursor:pointer;color:var(--fg);background:none;position:relative}
+.sw button::before{content:"";position:absolute;inset:0 0 20px;border-radius:10px;background:var(--c);border:1px solid #8883}
+.demo{border-radius:12px;padding:16px}
+.demo h3{margin:0 0 6px;font-size:24px;line-height:1.1}
+.demo p{margin:0 0 12px;font-size:14px}
+.demo span{display:inline-block;padding:8px 14px;border-radius:999px;font-weight:700;font-size:13px}
+.meta{color:var(--muted);font-size:13px;margin-top:10px}
+</style></head><body>
+<header><h1>Palette e Font</h1><p class="sub">Clicca un colore per copiarne l'hex.</p></header>
+<div class="grid">
+<article class="card"><div class="hero" style="background:#FC5C02"><div class="pill" style="background:#FC5C02"></div><div class="pill" style="background:#E2CEAE"></div><div class="pill" style="background:#7C6B51"></div><div class="pill" style="background:#312B1E"></div></div>
+<div class="body"><strong>Arancio Terra</strong><div class="sw"><button style="--c:#FC5C02" data-hex="#FC5C02">#FC5C02</button><button style="--c:#E2CEAE" data-hex="#E2CEAE">#E2CEAE</button><button style="--c:#7C6B51" data-hex="#7C6B51">#7C6B51</button><button style="--c:#312B1E" data-hex="#312B1E">#312B1E</button></div>
+<div class="demo" style="background:#312B1E;color:#E2CEAE"><h3 style="font-family:'Archivo Black'">Arancio Terra</h3>
+<p style="font-family:'Inter'">Testo di esempio per vedere l'abbinamento tra font e colori.</p>
+<span style="background:#FC5C02;color:#312B1E;font-family:'Inter'">Scopri di più</span></div>
+<div class="meta">Archivo Black + Inter · caldo, naturale, energico, outdoor</div></div></article>
+<article class="card"><div class="hero" style="background:#5465FF"><div class="pill" style="background:#00FFD4"></div><div class="pill" style="background:#5465FF"></div><div class="pill" style="background:#D2DDFF"></div><div class="pill" style="background:#050208"></div></div>
+<div class="body"><strong>Acqua Indaco</strong><div class="sw"><button style="--c:#00FFD4" data-hex="#00FFD4">#00FFD4</button><button style="--c:#5465FF" data-hex="#5465FF">#5465FF</button><button style="--c:#D2DDFF" data-hex="#D2DDFF">#D2DDFF</button><button style="--c:#050208" data-hex="#050208">#050208</button></div>
+<div class="demo" style="background:#050208;color:#D2DDFF"><h3 style="font-family:'Space Grotesk'">Acqua Indaco</h3>
+<p style="font-family:'Inter'">Testo di esempio per vedere l'abbinamento tra font e colori.</p>
+<span style="background:#00FFD4;color:#050208;font-family:'Inter'">Scopri di più</span></div>
+<div class="meta">Space Grotesk + Inter · tech, digitale, fresco, startup</div></div></article>
+<article class="card"><div class="hero" style="background:#FFBB00"><div class="pill" style="background:#474150"></div><div class="pill" style="background:#F5FFF4"></div><div class="pill" style="background:#9C99B8"></div><div class="pill" style="background:#FFBB00"></div></div>
+<div class="body"><strong>Giallo Lavanda</strong><div class="sw"><button style="--c:#474150" data-hex="#474150">#474150</button><button style="--c:#F5FFF4" data-hex="#F5FFF4">#F5FFF4</button><button style="--c:#9C99B8" data-hex="#9C99B8">#9C99B8</button><button style="--c:#FFBB00" data-hex="#FFBB00">#FFBB00</button></div>
+<div class="demo" style="background:#474150;color:#F5FFF4"><h3 style="font-family:'Poppins'">Giallo Lavanda</h3>
+<p style="font-family:'DM Sans'">Testo di esempio per vedere l'abbinamento tra font e colori.</p>
+<span style="background:#FFBB00;color:#474150;font-family:'DM Sans'">Scopri di più</span></div>
+<div class="meta">Poppins + DM Sans · solare, amichevole, moderno, creativo</div></div></article>
+<article class="card"><div class="hero" style="background:#87DB20"><div class="pill" style="background:#A935EB"></div><div class="pill" style="background:#87DB20"></div><div class="pill" style="background:#FFFFFF"></div><div class="pill" style="background:#000000"></div></div>
+<div class="body"><strong>Viola Lime</strong><div class="sw"><button style="--c:#A935EB" data-hex="#A935EB">#A935EB</button><button style="--c:#87DB20" data-hex="#87DB20">#87DB20</button><button style="--c:#FFFFFF" data-hex="#FFFFFF">#FFFFFF</button><button style="--c:#000000" data-hex="#000000">#000000</button></div>
+<div class="demo" style="background:#000000;color:#FFFFFF"><h3 style="font-family:'Syne'">Viola Lime</h3>
+<p style="font-family:'Manrope'">Testo di esempio per vedere l'abbinamento tra font e colori.</p>
+<span style="background:#87DB20;color:#000000;font-family:'Manrope'">Scopri di più</span></div>
+<div class="meta">Syne + Manrope · audace, giovane, pop, contrasto alto</div></div></article>
+<article class="card"><div class="hero" style="background:#6F2DBD"><div class="pill" style="background:#6F2DBD"></div><div class="pill" style="background:#A663CC"></div><div class="pill" style="background:#171123"></div><div class="pill" style="background:#FBFBFB"></div></div>
+<div class="body"><strong>Viola Notte</strong><div class="sw"><button style="--c:#6F2DBD" data-hex="#6F2DBD">#6F2DBD</button><button style="--c:#A663CC" data-hex="#A663CC">#A663CC</button><button style="--c:#171123" data-hex="#171123">#171123</button><button style="--c:#FBFBFB" data-hex="#FBFBFB">#FBFBFB</button></div>
+<div class="demo" style="background:#171123;color:#FBFBFB"><h3 style="font-family:'Unbounded'">Viola Notte</h3>
+<p style="font-family:'Outfit'">Testo di esempio per vedere l'abbinamento tra font e colori.</p>
+<span style="background:#6F2DBD;color:#FBFBFB;font-family:'Outfit'">Scopri di più</span></div>
+<div class="meta">Unbounded + Outfit · elegante, notturno, premium, musica</div></div></article>
+<article class="card"><div class="hero" style="background:#A7AA63"><div class="pill" style="background:#121A1B"></div><div class="pill" style="background:#505039"></div><div class="pill" style="background:#A7AA63"></div><div class="pill" style="background:#EAE6D2"></div></div>
+<div class="body"><strong>Oliva</strong><div class="sw"><button style="--c:#121A1B" data-hex="#121A1B">#121A1B</button><button style="--c:#505039" data-hex="#505039">#505039</button><button style="--c:#A7AA63" data-hex="#A7AA63">#A7AA63</button><button style="--c:#EAE6D2" data-hex="#EAE6D2">#EAE6D2</button></div>
+<div class="demo" style="background:#121A1B;color:#EAE6D2"><h3 style="font-family:'Playfair Display'">Oliva</h3>
+<p style="font-family:'Lora'">Testo di esempio per vedere l'abbinamento tra font e colori.</p>
+<span style="background:#A7AA63;color:#121A1B;font-family:'Lora'">Scopri di più</span></div>
+<div class="meta">Playfair Display + Lora · organico, sobrio, sostenibile, editoriale</div></div></article>
+<article class="card"><div class="hero" style="background:#22819A"><div class="pill" style="background:#90C2E7"></div><div class="pill" style="background:#FEF7F8"></div><div class="pill" style="background:#CDD4DD"></div><div class="pill" style="background:#22819A"></div></div>
+<div class="body"><strong>Cielo</strong><div class="sw"><button style="--c:#90C2E7" data-hex="#90C2E7">#90C2E7</button><button style="--c:#FEF7F8" data-hex="#FEF7F8">#FEF7F8</button><button style="--c:#CDD4DD" data-hex="#CDD4DD">#CDD4DD</button><button style="--c:#22819A" data-hex="#22819A">#22819A</button></div>
+<div class="demo" style="background:#22819A;color:#FEF7F8"><h3 style="font-family:'Nunito'">Cielo</h3>
+<p style="font-family:'Nunito Sans'">Testo di esempio per vedere l'abbinamento tra font e colori.</p>
+<span style="background:#90C2E7;color:#22819A;font-family:'Nunito Sans'">Scopri di più</span></div>
+<div class="meta">Nunito + Nunito Sans · calmo, pulito, affidabile, salute</div></div></article>
+</div>
+<script>
+document.querySelectorAll('.sw button').forEach(b => b.onclick = () => {
+  try { navigator.clipboard.writeText(b.dataset.hex); const t = b.textContent; b.textContent = 'Copiato'; setTimeout(() => b.textContent = t, 900); } catch (e) {}
+});
+</script>
+</body></html>

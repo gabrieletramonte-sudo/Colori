@@ -1,0 +1,104 @@
+{
+  "descrizione": "Libreria di palette colori (4 colori ciascuna). I colori provengono dalle immagini di riferimento in /riferimenti. I font sono abbinamenti suggeriti (Google Fonts), non presenti nelle immagini originali.",
+  "palette": [
+    {
+      "id": "arancio-terra",
+      "nome": "Arancio Terra",
+      "mood": ["caldo", "naturale", "energico", "outdoor"],
+      "sfondo": "#FC5C02",
+      "colori": [
+        { "hex": "#FC5C02", "ruolo": "accento" },
+        { "hex": "#E2CEAE", "ruolo": "chiaro" },
+        { "hex": "#7C6B51", "ruolo": "neutro" },
+        { "hex": "#312B1E", "ruolo": "scuro" }
+      ],
+      "font": { "titoli": "Archivo Black", "testo": "Inter" },
+      "riferimento": "riferimenti/01-arancio-terra.jpg"
+    },
+    {
+      "id": "acqua-indaco",
+      "nome": "Acqua Indaco",
+      "mood": ["tech", "digitale", "fresco", "startup"],
+      "sfondo": "#5465FF",
+      "colori": [
+        { "hex": "#00FFD4", "ruolo": "accento" },
+        { "hex": "#5465FF", "ruolo": "primario" },
+        { "hex": "#D2DDFF", "ruolo": "chiaro" },
+        { "hex": "#050208", "ruolo": "scuro" }
+      ],
+      "font": { "titoli": "Space Grotesk", "testo": "Inter" },
+      "riferimento": "riferimenti/02-acqua-indaco.jpg"
+    },
+    {
+      "id": "giallo-lavanda",
+      "nome": "Giallo Lavanda",
+      "mood": ["solare", "amichevole", "moderno", "creativo"],
+      "sfondo": "#FFBB00",
+      "colori": [
+        { "hex": "#474150", "ruolo": "scuro" },
+        { "hex": "#F5FFF4", "ruolo": "chiaro" },
+        { "hex": "#9C99B8", "ruolo": "neutro" },
+        { "hex": "#FFBB00", "ruolo": "accento" }
+      ],
+      "font": { "titoli": "Poppins", "testo": "DM Sans" },
+      "riferimento": "riferimenti/03-giallo-lavanda.jpg"
+    },
+    {
+      "id": "viola-lime",
+      "nome": "Viola Lime",
+      "mood": ["audace", "giovane", "pop", "contrasto alto"],
+      "sfondo": "#87DB20",
+      "colori": [
+        { "hex": "#A935EB", "ruolo": "primario" },
+        { "hex": "#87DB20", "ruolo": "accento" },
+        { "hex": "#FFFFFF", "ruolo": "chiaro" },
+        { "hex": "#000000", "ruolo": "scuro" }
+      ],
+      "font": { "titoli": "Syne", "testo": "Manrope" },
+      "riferimento": "riferimenti/04-viola-lime-chiaro.jpg",
+      "note": "Presente in due varianti: sfondo chiaro sfumato viola/lime e sfondo lime pieno (riferimenti/04b-viola-lime-sfondo-lime.jpg)."
+    },
+    {
+      "id": "viola-notte",
+      "nome": "Viola Notte",
+      "mood": ["elegante", "notturno", "premium", "musica"],
+      "sfondo": "#6F2DBD",
+      "colori": [
+        { "hex": "#6F2DBD", "ruolo": "primario" },
+        { "hex": "#A663CC", "ruolo": "secondario" },
+        { "hex": "#171123", "ruolo": "scuro" },
+        { "hex": "#FBFBFB", "ruolo": "chiaro" }
+      ],
+      "font": { "titoli": "Unbounded", "testo": "Outfit" },
+      "riferimento": "riferimenti/05-viola-notte.jpg"
+    },
+    {
+      "id": "oliva",
+      "nome": "Oliva",
+      "mood": ["organico", "sobrio", "sostenibile", "editoriale"],
+      "sfondo": "#A7AA63",
+      "colori": [
+        { "hex": "#121A1B", "ruolo": "scuro" },
+        { "hex": "#505039", "ruolo": "neutro" },
+        { "hex": "#A7AA63", "ruolo": "primario" },
+        { "hex": "#EAE6D2", "ruolo": "chiaro" }
+      ],
+      "font": { "titoli": "Playfair Display", "testo": "Lora" },
+      "riferimento": "riferimenti/06-oliva.jpg"
+    },
+    {
+      "id": "cielo",
+      "nome": "Cielo",
+      "mood": ["calmo", "pulito", "affidabile", "salute"],
+      "sfondo": "#22819A",
+      "colori": [
+        { "hex": "#90C2E7", "ruolo": "primario" },
+        { "hex": "#FEF7F8", "ruolo": "chiaro" },
+        { "hex": "#CDD4DD", "ruolo": "neutro" },
+        { "hex": "#22819A", "ruolo": "scuro" }
+      ],
+      "font": { "titoli": "Nunito", "testo": "Nunito Sans" },
+      "riferimento": "riferimenti/07-cielo.jpg"
+    }
+  ]
+}
