@@ -10,6 +10,14 @@ Palette di colori (4 tonalità ciascuna) raccolte da esempi di riferimento, pron
 
 > I font sono **abbinamenti suggeriti** (Google Fonts): le immagini di riferimento contengono solo i colori.
 
+## Sistema completo
+
+- **Inbox Drive**: cartella `DB Colori & Font - Inbox` — carica qui screenshot di palette, font e visual.
+- **DB Notion** (in Gabriele Brain): `Ispirazioni Colore & Font` (una scheda per esempio) e `Regole Colore & Font` (regole proposte → approvate).
+- **Analisi automatica** ogni giorno alle 7:40 (ora italiana): nuovi file → schede + regole proposte.
+- **Skill**: vedi `ISTRUZIONI-SKILL.md` per il blocco da incollare nelle skill creative/landing.
+- Notion è la fonte principale; questo repo resta come anteprima e variabili CSS.
+
 ## Palette
 
 ### Arancio Terra
