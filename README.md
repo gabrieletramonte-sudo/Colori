@@ -120,6 +120,22 @@ Sfondo: `#22819A` · Font: **Nunito** (titoli) + **Nunito Sans** (testo)
 
 <img src="riferimenti/07-cielo.jpg" width="220" alt="Cielo">
 
+### Primari Industriali
+*energico, industriale, pop, impatto, dinamico*
+
+| # | Hex | Ruolo |
+|---|---|---|
+| 1 | `#D13638` | primario |
+| 2 | `#2766C2` | secondario |
+| 3 | `#F1C632` | accento |
+| 4 | `#413E3F` | scuro |
+
+Sfondo: `#413E3F` · Font: **Montserrat** (titoli) + **Inter** (testo)
+
+_Da un video Reel (vernice rossa, blu e gialla in un capannone industriale, effetto bullet time). I titoli del video usano un sans geometrico pesante simile a Montserrat ExtraBold, con sottotitolo verde lime (~#9BE03A) e una scritta corsiva: font stimato, non confermato._
+
+<img src="riferimenti/08-primari-industriali.jpg" width="220" alt="Primari Industriali">
+
 ## Aggiungere nuove palette
 
 1. Aggiungi un oggetto all'array `palette` in `palettes.json` (stessa struttura).

@@ -89,4 +89,17 @@
   --cielo-sfondo: #22819A;
   --cielo-font-titoli: 'Nunito', sans-serif;
   --cielo-font-testo: 'Nunito Sans', sans-serif;
+
+  /* Primari Industriali */
+  --primari-industriali-1: #D13638;
+  --primari-industriali-primario: #D13638;
+  --primari-industriali-2: #2766C2;
+  --primari-industriali-secondario: #2766C2;
+  --primari-industriali-3: #F1C632;
+  --primari-industriali-accento: #F1C632;
+  --primari-industriali-4: #413E3F;
+  --primari-industriali-scuro: #413E3F;
+  --primari-industriali-sfondo: #413E3F;
+  --primari-industriali-font-titoli: 'Montserrat', sans-serif;
+  --primari-industriali-font-testo: 'Inter', sans-serif;
 }
