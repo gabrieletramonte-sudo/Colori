@@ -20,7 +20,7 @@ Consigliato installare **ffmpeg** (`brew install ffmpeg`, `winget install ffmpeg
 
 ```bash
 pkg install python ffmpeg git
-git clone <url-di-questo-repo> && cd Colori/video-downloader
+git clone -b ccr-e3bf69b6-oq3rp2 https://github.com/gabrieletramonte-sudo/Colori.git && cd Colori/video-downloader
 pip install -r requirements.txt
 python app.py --no-browser      # poi apri http://localhost:8000 nel browser del telefono
 ```
