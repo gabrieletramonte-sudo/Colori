@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scarica Video</title>
+<style>
+  :root {
+    --bg: #f6f4ef; --card: #ffffff; --text: #1d1b18; --muted: #6f6a61;
+    --border: #e3ded4; --accent: #fc5c02; --accent-text: #ffffff;
+    --ok: #1f7a4d; --err: #b3261e; --err-bg: #fdecea; --ok-bg: #e7f4ec;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #161513; --card: #211f1c; --text: #f2efe9; --muted: #a39d92;
+      --border: #35322d; --accent: #ff7a2e; --accent-text: #1a1007;
+      --ok: #6fd3a0; --err: #ff8a80; --err-bg: #3a1d1b; --ok-bg: #18301f;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; display: grid; place-items: center;
+    grid-template-columns: minmax(0, 1fr);
+    background: var(--bg); color: var(--text);
+    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    padding: 16px;
+  }
+  main {
+    width: 100%; max-width: 560px; background: var(--card);
+    border: 1px solid var(--border); border-radius: 20px; padding: 32px 28px;
+  }
+  h1 { margin: 0 0 4px; font-size: 1.6rem; letter-spacing: -0.02em; }
+  p.sub { margin: 0 0 24px; color: var(--muted); }
+  .chips { display: flex; gap: 8px; margin-bottom: 20px; }
+  .chip {
+    font-size: .8rem; padding: 4px 10px; border-radius: 999px;
+    border: 1px solid var(--border); color: var(--muted);
+  }
+  .chip.on { border-color: var(--accent); color: var(--accent); font-weight: 600; }
+  form { display: flex; flex-direction: column; gap: 12px; }
+  .row { display: flex; gap: 8px; }
+  input {
+    flex: 1; min-width: 0; font: inherit; padding: 14px 16px; border-radius: 12px;
+    border: 1px solid var(--border); background: var(--bg); color: var(--text);
+  }
+  input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+  button {
+    font: inherit; font-weight: 600; border: 0; border-radius: 12px; cursor: pointer;
+    padding: 14px 18px;
+  }
+  .ghost { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
+  .primary { background: var(--accent); color: var(--accent-text); }
+  button:disabled { opacity: .55; cursor: wait; }
+  .msg { margin-top: 16px; padding: 12px 14px; border-radius: 12px; display: none; }
+  .msg.show { display: block; }
+  .msg.err { background: var(--err-bg); color: var(--err); }
+  .msg.ok { background: var(--ok-bg); color: var(--ok); }
+  .msg.work { background: var(--bg); color: var(--muted); }
+  .spin {
+    display: inline-block; width: 14px; height: 14px; margin-right: 8px; vertical-align: -2px;
+    border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%;
+    animation: r .8s linear infinite;
+  }
+  @keyframes r { to { transform: rotate(360deg); } }
+  footer { margin-top: 24px; font-size: .8rem; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Scarica Video</h1>
+  <p class="sub">Incolla il link di un video Instagram o TikTok e scaricalo in MP4.</p>
+
+  <div class="chips">
+    <span class="chip" id="chip-instagram">Instagram</span>
+    <span class="chip" id="chip-tiktok">TikTok</span>
+  </div>
+
+  <form id="f">
+    <div class="row">
+      <input id="url" type="url" inputmode="url" autocomplete="off" required
+             placeholder="https://www.instagram.com/reel/…">
+      <button type="button" class="ghost" id="paste">Incolla</button>
+    </div>
+    <button class="primary" id="go" type="submit">Scarica</button>
+  </form>
+
+  <div class="msg" id="msg" role="status" aria-live="polite"></div>
+
+  <footer>Scarica solo contenuti tuoi o che hai il diritto di usare.</footer>
+</main>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const input = $("url"), go = $("go"), msg = $("msg");
+
+function platform(url) {
+  try {
+    const h = new URL(url).hostname.toLowerCase();
+    if (h === "instagram.com" || h.endsWith(".instagram.com")) return "instagram";
+    if (h === "tiktok.com" || h.endsWith(".tiktok.com")) return "tiktok";
+  } catch {}
+  return null;
+}
+
+function updateChips() {
+  const p = platform(input.value.trim());
+  $("chip-instagram").classList.toggle("on", p === "instagram");
+  $("chip-tiktok").classList.toggle("on", p === "tiktok");
+}
+
+function show(kind, html) {
+  msg.className = "msg show " + kind;
+  msg.innerHTML = html;
+}
+
+input.addEventListener("input", updateChips);
+
+$("paste").addEventListener("click", async () => {
+  try {
+    input.value = (await navigator.clipboard.readText()).trim();
+    updateChips();
+    input.focus();
+  } catch {
+    show("err", "Il browser non permette di leggere gli appunti: incolla con Ctrl/Cmd+V.");
+  }
+});
+
+$("f").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const url = input.value.trim();
+  if (!platform(url)) {
+    show("err", "Incolla un link di Instagram o TikTok.");
+    return;
+  }
+  go.disabled = true;
+  show("work", '<span class="spin"></span>Sto scaricando il video…');
+  try {
+    const res = await fetch("/api/download", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ url }),
+    });
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data.error || "Download non riuscito.");
+    }
+    const blob = await res.blob();
+    const cd = res.headers.get("Content-Disposition") || "";
+    const m = cd.match(/filename\*=UTF-8''([^;]+)/) || cd.match(/filename="([^"]+)"/);
+    const name = m ? decodeURIComponent(m[1]) : "video.mp4";
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 10000);
+    const mb = (blob.size / 1048576).toFixed(1);
+    show("ok", `Fatto! <strong>${name.replace(/[<>&]/g, "")}</strong> (${mb} MB)`);
+  } catch (err) {
+    show("err", String(err.message).replace(/[<>&]/g, ""));
+  } finally {
+    go.disabled = false;
+  }
+});
+</script>
+</body>
+</html>
