@@ -25,6 +25,23 @@ pip install -r requirements.txt
 python app.py --no-browser      # poi apri http://localhost:8000 nel browser del telefono
 ```
 
+## Sul tuo VPS (usala da qualsiasi telefono)
+
+Su un VPS Debian/Ubuntu, collegato in SSH:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/gabrieletramonte-sudo/Colori/ccr-e3bf69b6-oq3rp2/video-downloader/deploy/install.sh | sudo bash
+```
+
+Ti chiede la password del sito, poi stampa l'indirizzo da aprire. Con un dominio che punta al VPS hai l'HTTPS automatico (consigliato, così la password non viaggia in chiaro):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/gabrieletramonte-sudo/Colori/ccr-e3bf69b6-oq3rp2/video-downloader/deploy/install.sh | sudo DOMAIN=video.tuodominio.it bash
+```
+
+Rilanciare lo stesso comando aggiorna l'app. yt-dlp si aggiorna da solo ogni notte. Log: `journalctl -u scarica-video -f`.
+Instagram blocca spesso gli IP dei server: carica un `cookies.txt` in `/var/lib/scarica-video/cookies.txt` (proprietario `scarica`) e `sudo systemctl restart scarica-video`.
+
 ## Instagram: accesso richiesto
 
 Instagram spesso blocca i download senza login (sempre per i profili privati). In quel caso:
@@ -41,6 +58,9 @@ Instagram spesso blocca i download senza login (sempre per i profili privati). I
 | `PORT` | `8000` | porta del server |
 | `HOST` | `127.0.0.1` | metti `0.0.0.0` per usarla dal telefono sulla stessa rete Wi-Fi |
 | `COOKIES_FROM_BROWSER` | — | browser da cui leggere i cookie |
+| `COOKIES_FILE` | `./cookies.txt` | percorso del file cookie |
+| `APP_PASSWORD` | — | se impostata il sito chiede la password |
+| `MAX_PARALLEL` | `3` | download contemporanei massimi |
 
 `python app.py --no-browser` avvia senza aprire il browser.
 

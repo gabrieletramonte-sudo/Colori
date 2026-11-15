@@ -4,6 +4,8 @@
 Avvio:  python app.py   →  si apre http://localhost:8000
 Dipendenze: yt-dlp (pip install -r requirements.txt); ffmpeg consigliato.
 """
+import base64
+import hmac
 import json
 import os
 import shutil
@@ -28,7 +30,10 @@ HOST = "0.0.0.0" if "--telefono" in sys.argv else os.environ.get("HOST", "127.0.
 #   COOKIES_FROM_BROWSER=chrome  (o firefox, safari, edge, brave…)
 #   oppure un file cookies.txt (formato Netscape) accanto a app.py
 COOKIES_FROM_BROWSER = os.environ.get("COOKIES_FROM_BROWSER", "").strip()
-COOKIES_FILE = HERE / "cookies.txt"
+COOKIES_FILE = Path(os.environ.get("COOKIES_FILE", HERE / "cookies.txt"))
+# Se impostata, il sito chiede questa password (obbligatoria se l'app è online)
+APP_PASSWORD = os.environ.get("APP_PASSWORD", "")
+MAX_PARALLEL = threading.BoundedSemaphore(int(os.environ.get("MAX_PARALLEL", "3")))
 
 ALLOWED_HOSTS = ("instagram.com", "tiktok.com")
 HAS_FFMPEG = shutil.which("ffmpeg") is not None
@@ -55,6 +60,7 @@ def ydl_options(outdir: str) -> dict:
         "noplaylist": True,
         "quiet": True,
         "no_warnings": True,
+        "cachedir": False,
         "max_filesize": 1024 * 1024 * 1024,  # 1 GB
     }
     if HAS_FFMPEG:
@@ -100,7 +106,28 @@ class Handler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
+    def _authorized(self) -> bool:
+        if not APP_PASSWORD:
+            return True
+        header = self.headers.get("Authorization", "")
+        if header.startswith("Basic "):
+            try:
+                _, _, pwd = base64.b64decode(header[6:]).decode().partition(":")
+            except (ValueError, UnicodeDecodeError):
+                return False
+            if hmac.compare_digest(pwd.encode(), APP_PASSWORD.encode()):
+                return True
+        body = b"Password richiesta"
+        self.send_response(401)
+        self.send_header("WWW-Authenticate", 'Basic realm="Scarica Video", charset="UTF-8"')
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
+        return False
+
     def do_GET(self):
+        if not self._authorized():
+            return
         if self.path in ("/", "/index.html"):
             body = (HERE / "index.html").read_bytes()
             self.send_response(200)
@@ -114,6 +141,8 @@ class Handler(BaseHTTPRequestHandler):
             self._json(404, {"error": "Non trovato"})
 
     def do_POST(self):
+        if not self._authorized():
+            return
         if self.path != "/api/download":
             return self._json(404, {"error": "Non trovato"})
         try:
@@ -127,6 +156,8 @@ class Handler(BaseHTTPRequestHandler):
         if not platform:
             return self._json(400, {"error": "Incolla un link di Instagram o TikTok."})
 
+        if not MAX_PARALLEL.acquire(timeout=60):
+            return self._json(503, {"error": "Server occupato, riprova tra poco."})
         tmp = tempfile.mkdtemp(prefix="scarica-")
         try:
             with yt_dlp.YoutubeDL(ydl_options(tmp)) as ydl:
@@ -156,6 +187,7 @@ class Handler(BaseHTTPRequestHandler):
         except Exception as e:  # noqa: BLE001
             self._json(500, {"error": f"Errore imprevisto: {e}"})
         finally:
+            MAX_PARALLEL.release()
             shutil.rmtree(tmp, ignore_errors=True)
 
 
@@ -173,6 +205,8 @@ def main():
     server = ThreadingHTTPServer((HOST, PORT), Handler)
     url = f"http://localhost:{PORT}"
     print(f"Scarica Video attivo su {url}  (Ctrl+C per uscire)")
+    if HOST != "127.0.0.1" and not APP_PASSWORD:
+        print("  ATTENZIONE: app raggiungibile in rete senza password (imposta APP_PASSWORD).")
     if HOST == "0.0.0.0":
         ip = lan_ip()
         if ip:
