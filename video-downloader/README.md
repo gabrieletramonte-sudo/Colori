@@ -12,6 +12,19 @@ python app.py            # si apre http://localhost:8000
 
 Consigliato installare **ffmpeg** (`brew install ffmpeg`, `winget install ffmpeg`, `apt install ffmpeg`) per avere sempre audio+video uniti alla qualità migliore.
 
+## Dal telefono
+
+**Con il computer acceso (stessa Wi-Fi):** avvia `python app.py --telefono`, poi apri sul telefono l'indirizzo che compare nel terminale (es. `http://192.168.1.20:8000`). Il video finisce nei Download (Android) o in File → Download (iPhone); da lì "Salva video" per metterlo in Galleria/Foto. Se non si apre, consenti Python nel firewall del computer.
+
+**Senza computer, su Android:** installa [Termux](https://f-droid.org/packages/com.termux/) da F-Droid, poi:
+
+```bash
+pkg install python ffmpeg git
+git clone <url-di-questo-repo> && cd Colori/video-downloader
+pip install -r requirements.txt
+python app.py --no-browser      # poi apri http://localhost:8000 nel browser del telefono
+```
+
 ## Instagram: accesso richiesto
 
 Instagram spesso blocca i download senza login (sempre per i profili privati). In quel caso:

@@ -22,7 +22,8 @@ except ImportError:
 
 HERE = Path(__file__).resolve().parent
 PORT = int(os.environ.get("PORT", "8000"))
-HOST = os.environ.get("HOST", "127.0.0.1")
+# --telefono: rende l'app raggiungibile dagli altri dispositivi sulla stessa Wi-Fi
+HOST = "0.0.0.0" if "--telefono" in sys.argv else os.environ.get("HOST", "127.0.0.1")
 # Opzionale, utile per Instagram (post privati o richiesta login):
 #   COOKIES_FROM_BROWSER=chrome  (o firefox, safari, edge, brave…)
 #   oppure un file cookies.txt (formato Netscape) accanto a app.py
@@ -158,10 +159,24 @@ class Handler(BaseHTTPRequestHandler):
             shutil.rmtree(tmp, ignore_errors=True)
 
 
+def lan_ip() -> str | None:
+    import socket
+    try:
+        with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+            s.connect(("10.255.255.255", 1))  # nessun pacchetto inviato
+            return s.getsockname()[0]
+    except OSError:
+        return None
+
+
 def main():
     server = ThreadingHTTPServer((HOST, PORT), Handler)
     url = f"http://localhost:{PORT}"
     print(f"Scarica Video attivo su {url}  (Ctrl+C per uscire)")
+    if HOST == "0.0.0.0":
+        ip = lan_ip()
+        if ip:
+            print(f"  Dal telefono (stessa Wi-Fi) apri:  http://{ip}:{PORT}")
     if not HAS_FFMPEG:
         print("  Nota: ffmpeg non trovato — alcuni video potrebbero avere qualità più bassa.")
     if "--no-browser" not in sys.argv:
